@@ -8,18 +8,20 @@ import java.util.zip.ZipOutputStream;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        GameProgress onePlayer = new GameProgress(5, 3, 2, 20.5);
-        GameProgress twoPlayer = new GameProgress(6, 2, 3, 21.5);
-        GameProgress threePlayer = new GameProgress(7, 5, 5, 25.5);
-        saveGame("C:\\Users\\ПК\\Desktop\\Games\\savegames\\save1.dat", onePlayer);
-        saveGame("C:\\Users\\ПК\\Desktop\\Games\\savegames\\save2.dat", twoPlayer);
-        saveGame("C:\\Users\\ПК\\Desktop\\Games\\savegames\\save3.dat", threePlayer);
-        List<String> filesForZiped = new ArrayList<>();
-        filesForZiped.add("C:\\Users\\ПК\\Desktop\\Games\\savegames\\save1.dat");
-        filesForZiped.add("C:\\Users\\ПК\\Desktop\\Games\\savegames\\save2.dat");
-        filesForZiped.add("C:\\Users\\ПК\\Desktop\\Games\\savegames\\save3.dat");
-        zipFiles("C:\\Users\\ПК\\Desktop\\Games\\savegames\\zipFile.zip", filesForZiped);
-        System.out.println(filesForZiped);
+
+        String[] nameOfFile = {"C:\\Users\\ПК\\Desktop\\Games\\savegames\\save1.dat", "C:\\Users\\ПК\\Desktop\\Games\\savegames\\save2.dat",
+                "C:\\Users\\ПК\\Desktop\\Games\\savegames\\save3.dat"};
+
+        GameProgress[] player = {new GameProgress(5, 3, 2, 20.5), new GameProgress(6, 2, 3, 21.5),
+                new GameProgress(7, 5, 5, 25.5)};
+
+        for (int i = 0; i < nameOfFile.length; i++) {
+            saveGame(nameOfFile[i], player[i]);
+            List<String> filesForZiped = new ArrayList<>();
+            filesForZiped.add(nameOfFile[i]);
+            zipFiles("C:\\Users\\ПК\\Desktop\\Games\\savegames\\zipFile.zip", filesForZiped);
+            System.out.println(filesForZiped);
+        }
 
 
     }
